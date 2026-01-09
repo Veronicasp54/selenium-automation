@@ -1,0 +1,43 @@
+package steps;
+
+import io.cucumber.java.en.And;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+import org.openqa.selenium.WebDriver;
+import pages.CarrinhoPage;
+import pages.HomePage;
+import utils.DriverManager;
+
+import static org.junit.Assert.assertTrue;
+
+public class AdicionarProdutoCarrinhoSteps {
+
+    private WebDriver driver;
+    private CarrinhoPage carrinhoPage;
+    private HomePage homePage;
+
+    @Given("o usuário selecionou Catalogo no menu lateral")
+    public void acessarMenuLateral() {   // <-- precisa ser public
+        driver = DriverManager.getDriver();
+        homePage = new HomePage(driver);
+        homePage.navigateTo();
+        homePage.acessarLinkCatalogo();
+    }
+
+    @When("o usuário seleciona um produto no Catologo")
+    public void selecionarProdutoNoCatologo() {   // <-- precisa ser public
+        homePage.selecionarProduto();
+    }
+
+    @And("o usuário clica no botão Add to Cart")
+    public void addProdutoNoCarrinho() {
+        homePage.addProdutoCarrinho();
+    }
+
+    @Then("o produto deve ser adicionado ao carrinho")
+    public void verificarProdutoCarrinho() {   // <-- precisa ser public
+        carrinhoPage = new CarrinhoPage(driver);
+        assertTrue(carrinhoPage.carrinhoTemUmItem());
+    }
+}
