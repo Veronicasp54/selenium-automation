@@ -6,11 +6,12 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import utils.DriverManager;
 
 import java.time.Duration;
 
-public class LoginPage {
 
+public class LoginPage {
     private WebDriver driver;
     private WebDriverWait wait;
     private final String urlLogin = "https://sauce-demo.myshopify.com/account/login";
@@ -53,6 +54,13 @@ public class LoginPage {
     public void clicarBotaoLogin() {
         wait.until(ExpectedConditions.elementToBeClickable(loginButton)).click();
 
+    }
+
+    public void realizarLogin(){
+        navigateTo();
+        preencherEmail("veronicasp54@gmail.com");
+        preencherSenha("testes123");
+        clicarBotaoLogin();
     }
 
 

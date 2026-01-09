@@ -18,7 +18,7 @@ public class AdicionarProdutoCarrinhoSteps {
     private HomePage homePage;
 
     @Given("o usuário selecionou Catalogo no menu lateral")
-    public void acessarMenuLateral() {   // <-- precisa ser public
+    public void acessarMenuLateral() {
         driver = DriverManager.getDriver();
         homePage = new HomePage(driver);
         homePage.navigateTo();
@@ -36,7 +36,7 @@ public class AdicionarProdutoCarrinhoSteps {
     }
 
     @Then("o produto deve ser adicionado ao carrinho")
-    public void verificarProdutoCarrinho() {   // <-- precisa ser public
+    public void verificarProdutoCarrinho() {
         carrinhoPage = new CarrinhoPage(driver);
         assertTrue(carrinhoPage.carrinhoTemUmItem());
     }
