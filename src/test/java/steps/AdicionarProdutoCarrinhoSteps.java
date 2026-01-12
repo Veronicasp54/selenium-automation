@@ -21,7 +21,6 @@ public class AdicionarProdutoCarrinhoSteps {
     public void acessarMenuLateral() {
         driver = DriverManager.getDriver();
         homePage = new HomePage(driver);
-        homePage.navigateTo();
         homePage.acessarLinkCatalogo();
     }
 

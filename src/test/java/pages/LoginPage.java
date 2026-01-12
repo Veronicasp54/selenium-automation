@@ -2,6 +2,7 @@ package pages;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -72,4 +73,23 @@ public class LoginPage {
     public String getPaginaAtual() {
         return driver.getCurrentUrl();
     }
+
+    public void clicarBotaoLoginHumano() {
+        // 1. Espera o botão estar clicável
+        wait.until(ExpectedConditions.elementToBeClickable(loginButton));
+
+        // 2. Pequena pausa aleatória (simulando tempo de reação humana)
+        try { Thread.sleep(800); } catch (InterruptedException e) {}
+
+        // 3. Move o mouse até o elemento e clica
+        Actions actions = new Actions(driver);
+        actions.moveToElement(loginButton)
+                .pause(Duration.ofMillis(200)) // Pausa com o mouse sobre o botão
+                .click()
+                .perform();
+    }
+
+
+
 }
+

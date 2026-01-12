@@ -8,7 +8,7 @@ import utils.DriverManager;
 public class Hooks {
 
 
-    @Before
+    @Before("not @loginInvalido")
     public void beforeScenario() {
         LoginPage loginPage = new LoginPage(DriverManager.getDriver());
         loginPage.realizarLogin();

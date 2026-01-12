@@ -30,6 +30,8 @@ public class LoginInvalidoSteps {
     @And("o usuário insere a senha invalida {string}")
     public void usuarioInsereSenhaInvalida(String senha) {
         loginPage.preencherSenha(senha);
+        loginPage.clicarBotaoLoginHumano();
+
     }
 
     @Then("o sistema deve exibir a mensagem de erro {string}")
