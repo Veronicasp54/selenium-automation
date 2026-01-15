@@ -23,9 +23,12 @@ public class DriverManager {
             options.addArguments("--disable-dev-shm-usage",
                     "--disable-browser-side-navigation",
                     "--disable-blink-features=AutomationControlled",
-                    "--start-maximized", "--incognito", "user-agent= Chrome/143.0.7499.193",
-                    "--user-data-dir=/Users/veronicasouza/Library/Application Support/Google/Chrome/Profile 1",
-                    "--profile-directory=Profile1");
+                    "--start-maximized", "--disable-extensions");
+
+            options.addArguments("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) " +
+                    "AppleWebKit/537.36 (KHTML, like Gecko) " +
+                    "Chrome Safari/537.36");
+
 
             driver.set(new ChromeDriver(options));
         }

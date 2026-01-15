@@ -16,7 +16,7 @@ import io.cucumber.junit.CucumberOptions;
 @CucumberOptions(
         features = "src/test/resources/features",
         glue = {"steps", "utils"},
-        tags = "@loginInvalido",
+        tags = "@acessarCatalogo",
         plugin = {"pretty",
                 "html:target/cucumber-report.html"}, monochrome = true
 )

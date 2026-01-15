@@ -11,11 +11,14 @@ import utils.DriverManager;
 
 import java.time.Duration;
 
+import static org.junit.Assert.assertEquals;
+
 
 public class LoginPage {
     private WebDriver driver;
     private WebDriverWait wait;
     private final String urlLogin = "https://sauce-demo.myshopify.com/account/login";
+    private final String urlAccount = "https://sauce-demo.myshopify.com/account";
 
     @FindBy(id = "customer_email")
     private WebElement emailField;
@@ -23,7 +26,7 @@ public class LoginPage {
     @FindBy(id = "customer_password")
     private WebElement passwordField;
 
-    @FindBy(xpath = "//*[@id='customer_login']/div[5]/input")
+    @FindBy(xpath = "//input[@type='submit' and @value='Sign In']")
     private WebElement loginButton;
 
     @FindBy(css = "h3[data-test='error']")
@@ -44,16 +47,23 @@ public class LoginPage {
     // Realizar login
     public void preencherEmail(String email) {
         wait.until(ExpectedConditions.visibilityOf(emailField)).clear();
-        emailField.sendKeys(email);
+        //emailField.sendKeys(email);
+        digitarComoHumano(emailField, email);
     }
 
     public void preencherSenha(String senha) {
         wait.until(ExpectedConditions.visibilityOf(passwordField)).clear();
-        passwordField.sendKeys(senha);
+       // passwordField.sendKeys(senha);
+        digitarComoHumano(passwordField, senha);
+
     }
 
     public void clicarBotaoLogin() {
-        wait.until(ExpectedConditions.elementToBeClickable(loginButton)).click();
+        wait.until(ExpectedConditions.elementToBeClickable(loginButton));
+        clicarBotaoLoginHumano();
+        String urlAtual = driver.getCurrentUrl();
+        assertEquals("https://sauce-demo.myshopify.com/account", urlAtual);
+
 
     }
 
@@ -72,6 +82,19 @@ public class LoginPage {
 
     public String getPaginaAtual() {
         return driver.getCurrentUrl();
+    }
+
+    private void digitarComoHumano(WebElement campo, String texto) {
+        wait.until(ExpectedConditions.visibilityOf(campo)).clear();
+        for (char c : texto.toCharArray()) {
+            campo.sendKeys(String.valueOf(c));
+            try {
+                Thread.sleep(150 + (int)(Math.random() * 150));
+                // espera entre 150–300ms aleatório
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
+        }
     }
 
     public void clicarBotaoLoginHumano() {

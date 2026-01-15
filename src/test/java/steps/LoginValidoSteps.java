@@ -8,6 +8,7 @@ import org.openqa.selenium.WebDriver;
 import pages.LoginPage;
 import utils.DriverManager;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class LoginValidoSteps {
@@ -19,6 +20,7 @@ public class LoginValidoSteps {
     public void usuarioNaPaginaDeLogin() {
         driver = DriverManager.getDriver();
         loginPage = new LoginPage(driver);
+        driver.get("https://sauce-demo.myshopify.com/account");
         loginPage.navigateTo();
     }
 
@@ -40,6 +42,7 @@ public class LoginValidoSteps {
     @Then("o sistema apresenta a página {string}")
     public void sistemaApresentaPagina(String paginaEsperada) {
         String paginaAtual = loginPage.getPaginaAtual();
-        assertTrue(paginaAtual.contains(paginaEsperada));
+        assertEquals(paginaEsperada, paginaAtual);
+        //  assertTrue(paginaAtual.contains(paginaEsperada));
     }
 }
