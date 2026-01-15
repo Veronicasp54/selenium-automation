@@ -9,6 +9,7 @@ import pages.CarrinhoPage;
 import pages.HomePage;
 import utils.DriverManager;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class AdicionarProdutoCarrinhoSteps {
@@ -22,11 +23,13 @@ public class AdicionarProdutoCarrinhoSteps {
         driver = DriverManager.getDriver();
         homePage = new HomePage(driver);
         homePage.acessarLinkCatalogo();
+        assertTrue(driver.getCurrentUrl().endsWith("collections/all"));
     }
 
     @When("o usuário seleciona um produto no Catologo")
     public void selecionarProdutoNoCatologo() {   // <-- precisa ser public
         homePage.selecionarProduto();
+        assertEquals("https://sauce-demo.myshopify.com/products/flower-print-jeans", homePage.getPaginaAtual());
     }
 
     @And("o usuário clica no botão Add to Cart")

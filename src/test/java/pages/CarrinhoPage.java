@@ -9,7 +9,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-import static org.junit.Assert.assertTrue;
 
 public class CarrinhoPage {
 
@@ -27,15 +26,18 @@ public class CarrinhoPage {
     @FindBy(xpath = "//*[@id=\"drawer\"]/div/div/p")
     private WebElement mensagemCarrinho;
 
-    @FindBy(xpath = "//*[@id=\"cart-target-desktop\"]/span")
+    @FindBy(id = "cart-target-desktop")
     private WebElement numeroProdutosCarrinho;
 
     @FindBy(xpath = "//*[@id=\"drawer\"]")
     private WebElement carrinhoProdutos;
 
+    @FindBy(id ="drawer")
+    private WebElement bannerCarrinho;
+
     public CarrinhoPage(WebDriver driver) {
         this.driver = driver;
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(10)); // timeout de 10s
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(20)); // timeout de 10s
         PageFactory.initElements(driver, this);
     }
 
@@ -49,7 +51,6 @@ public class CarrinhoPage {
     }
 
     public boolean carrinhoTemUmItem() {
-        wait.until(ExpectedConditions.visibilityOf(numeroProdutosCarrinho));
         return getNumeroProdutosCarrinho().equals("1");
     }
 
@@ -72,22 +73,21 @@ public class CarrinhoPage {
     }
 
     public void removerProduto() {
-//        btnMinicart.click();
-//        wait.until(ExpectedConditions.visibilityOf(btnRemoveToCart));
-//        btnRemoveToCart.click();
 
         wait.until(ExpectedConditions.visibilityOf(carrinhoProdutos));
-
-        wait.until(ExpectedConditions.visibilityOf(btnRemoveToCart));
+        wait.until(ExpectedConditions.elementToBeClickable(btnRemoveToCart));
         btnRemoveToCart.click();
-        System.out.println("Produto removido do carrinho.");
+        System.out.println("btn removido selecionado.");
 
 
     }
 
     public String getMensagemCarrinhoVazio() {
-
+        wait.until(ExpectedConditions.visibilityOf(bannerCarrinho));
         wait.until(ExpectedConditions.visibilityOf(mensagemCarrinho));
+
+        //  wait.until(ExpectedConditions.visibilityOfElementLocated(mensagemCarrinho));
+
         return mensagemCarrinho.getText();
     }
 }

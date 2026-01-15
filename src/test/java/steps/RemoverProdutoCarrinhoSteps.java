@@ -21,7 +21,6 @@ public class RemoverProdutoCarrinhoSteps {
     public void adicionouProdutoNoCarrinho() {
         driver = DriverManager.getDriver();
         homePage = new HomePage(driver);
-        homePage.navigateTo();
         homePage.acessarLinkCatalogo();
         homePage.selecionarProduto();
         homePage.addProdutoCarrinho();
@@ -41,6 +40,7 @@ public class RemoverProdutoCarrinhoSteps {
 
     @Then("o sistema apresentará a mensagem de que o carrinho está vazio {string}")
     public void verificarMensagemCarrinhoVazio(String mensagemEsperada) {
+
         String mensagem = carrinhoPage.getMensagemCarrinhoVazio();
         assertTrue(mensagem.contains(mensagemEsperada));
     }

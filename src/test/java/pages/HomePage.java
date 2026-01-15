@@ -21,7 +21,7 @@ public class HomePage{
     @FindBy(id="customer_login_link")
     private WebElement btnLogin;
 
-    @FindBy(xpath = "//*[@id=\"main-menu\"]/li[2]/a")
+    @FindBy(xpath = "//ul[@id='main-menu']//a[text()='Catalog']")
     private WebElement linkCatalogo;
 
     @FindBy(xpath = "//*[@id=\"product-1\"]/img")
@@ -48,10 +48,14 @@ public class HomePage{
 
     public void selecionarProduto() {
         linkCatalogo.click();
+        //driver.navigate().refresh();
+
+        wait.until(ExpectedConditions.elementToBeClickable(imgProduct));
         imgProduct.click();
     }
 
     public void addProdutoCarrinho() {
+        wait.until(ExpectedConditions.elementToBeClickable(btnAddCart));
         btnAddCart.click();
     }
 }

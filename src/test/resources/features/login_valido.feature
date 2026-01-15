@@ -1,6 +1,6 @@
 Feature: Login
 
-  @loginValido
+  @loginValido @login
   Scenario: Login com credenciais válidas
     Given usuário está na página de login
     When o usuário insere email "veronicasp54@gmail.com"
