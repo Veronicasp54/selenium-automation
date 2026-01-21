@@ -4,13 +4,12 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
+import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import pages.LoginPage;
 import utils.DriverManager;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-
 public class LoginValidoSteps {
 
     private WebDriver driver;
@@ -43,6 +42,7 @@ public class LoginValidoSteps {
     public void sistemaApresentaPagina(String paginaEsperada) {
         String paginaAtual = loginPage.getPaginaAtual();
         assertEquals(paginaEsperada, paginaAtual);
-        //  assertTrue(paginaAtual.contains(paginaEsperada));
+        Assert.assertEquals(paginaEsperada, paginaAtual);
+
     }
 }
