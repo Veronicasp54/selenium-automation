@@ -7,6 +7,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import utils.ConfigReader;
 
 import java.time.Duration;
 
@@ -36,9 +37,12 @@ public class LoginPage {
 
 
     public void navigateTo() {
-        String urlLogin = "https://sauce-demo.myshopify.com/account/login";
-        driver.get(urlLogin);
-        wait.until(ExpectedConditions.visibilityOf(emailField)); // garante que o campo email esteja visível
+        String baseUrl = ConfigReader.getProperty("base.url");
+        String endpoint = ConfigReader.getProperty("login.endpoint");
+
+        driver.get(baseUrl + endpoint);
+
+        wait.until(ExpectedConditions.visibilityOf(emailField));
     }
 
     // Realizar login
@@ -58,13 +62,6 @@ public class LoginPage {
         clicarBotaoLoginHumano();
     }
 
-//    public void realizarLogin(){
-//        navigateTo();
-//        preencherEmail("veronicasp54@gmail.com");
-//        preencherSenha("testes123");
-//        clicarBotaoLogin();
-//    }
-
 
     // Obter mensagem de erro
     public String getErrorMessage() {
@@ -73,6 +70,7 @@ public class LoginPage {
 
     public String getPaginaAtual() {
         return driver.getCurrentUrl();
+
     }
 
     private void digitarComoHumano(WebElement campo, String texto) {

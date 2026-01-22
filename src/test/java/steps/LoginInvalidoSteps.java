@@ -6,37 +6,38 @@ import io.cucumber.java.en.When;
 import io.cucumber.java.en.Then;
 import org.openqa.selenium.WebDriver;
 import pages.LoginPage;
+import utils.ConfigReader;
 import utils.DriverManager;
 
 import static org.junit.Assert.assertTrue;
 
 public class LoginInvalidoSteps {
 
-    private WebDriver driver;
-    private LoginPage loginPage;
+    LoginPage loginPage = new LoginPage(DriverManager.getDriver());
+
 
     @Given("que o usuário está na página de login")
     public void acessarLogin() {
-        driver = DriverManager.getDriver();
-        loginPage = new LoginPage(driver);
         loginPage.navigateTo();
     }
 
     @When("o usuário insere o email {string}")
     public void usuarioInsereEmail(String email) {
-        loginPage.preencherEmail(email);
+        String emailInvalido = ConfigReader.getProperty(email);
+        loginPage.preencherEmail(emailInvalido);
     }
 
-    @And("o usuário insere a senha invalida {string}")
-    public void usuarioInsereSenhaInvalida(String senha) {
-        loginPage.preencherSenha(senha);
+    @And("o usuário insere a senha {string}")
+    public void usuarioInsereASenha(String senha) {
+        String senhaInvalida = ConfigReader.getProperty(senha);
+        loginPage.preencherSenha(senhaInvalida);
         loginPage.clicarBotaoLoginHumano();
-
     }
 
     @Then("o sistema deve exibir a mensagem de erro {string}")
     public void verificarMensagemErro(String mensagemEsperada) {
-        String mensagem = loginPage.getErrorMessage();
-        assertTrue(mensagem.contains(mensagemEsperada));
+        assertTrue(mensagemEsperada.contains(loginPage.getErrorMessage()));
     }
+
+
 }
