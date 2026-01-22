@@ -4,8 +4,6 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
-import org.junit.Assert;
-import org.openqa.selenium.WebDriver;
 import pages.LoginPage;
 import utils.ConfigReader;
 import utils.DriverManager;
