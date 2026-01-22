@@ -1,5 +1,6 @@
 package pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -35,6 +36,9 @@ public class LoginPage {
     @FindBy(css = "h3[data-test='error']")
     private WebElement errorMessage;
 
+    @FindBy(xpath = "//h1[text()='Account Details and Order History']")
+    private WebElement mensagemEsperadaLogin;
+
 
     public void navigateTo() {
         String baseUrl = ConfigReader.getProperty("base.url");
@@ -66,6 +70,10 @@ public class LoginPage {
     // Obter mensagem de erro
     public String getErrorMessage() {
         return wait.until(ExpectedConditions.visibilityOf(errorMessage)).getText();
+    }
+
+    public String getMensagemPosLogin() {
+        return wait.until(ExpectedConditions.visibilityOf(mensagemEsperadaLogin)).getText();
     }
 
     public String getPaginaAtual() {

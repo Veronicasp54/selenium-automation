@@ -3,7 +3,8 @@ Feature: Login
   @loginValido @login
   Scenario: Login com credenciais válidas
     Given usuário está na página de login
-    When o usuário insere email "veronicasp54@gmail.com"
-    And o usuário insere senha "testes123"
+    When o usuário insere o email "usuario_invalido.email"
+    And o usuário insere a senha "usuario_invalido.senha"
     And o usuário clica no botão Sign In
-    Then o sistema apresenta a página "https://sauce-demo.myshopify.com/account"
+    Then o sistema apresenta a página "account.endpoint" com mensagem "Account Details and Order History"
+

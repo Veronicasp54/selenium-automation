@@ -15,7 +15,6 @@ public class LoginInvalidoSteps {
 
     LoginPage loginPage = new LoginPage(DriverManager.getDriver());
 
-
     @Given("que o usuário está na página de login")
     public void acessarLogin() {
         loginPage.navigateTo();
