@@ -18,7 +18,7 @@ public class Hooks {
 
     @After(order = 1)
     public void afterScenario(io.cucumber.java.Scenario scenario) {
-        new WebDriverWait(DriverManager.getDriver(), Duration.ofSeconds(10))
+        new WebDriverWait(DriverManager.getDriver(), Duration.ofSeconds(20))
                 .until(d -> d instanceof TakesScreenshot);
 
         Screenshot.saveScreenshot(DriverManager.getDriver(), scenario.getName() + ".png");
@@ -28,6 +28,6 @@ public class Hooks {
     // este roda depois, para encerrar o driver
     @After(order = 0)
     public void afterAll() {
-        DriverManager.quitDriver();
+        //DriverManager.quitDriver();
     }
 }
