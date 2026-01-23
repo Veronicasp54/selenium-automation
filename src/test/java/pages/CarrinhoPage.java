@@ -61,7 +61,7 @@ public class CarrinhoPage {
 
     public void abrirCarrinho() {
 
-        if (carrinhoTemUmItem() == true) {
+        if (carrinhoTemUmItem()) {
             driver.navigate().refresh();
             btnMinicart.click();
             System.out.println("Carrinho aberto com item.");
