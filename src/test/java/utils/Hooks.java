@@ -3,6 +3,7 @@ package utils;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.HomePage;
 
@@ -18,10 +19,15 @@ public class Hooks {
 
     @After(order = 1)
     public void afterScenario(io.cucumber.java.Scenario scenario) {
-        new WebDriverWait(DriverManager.getDriver(), Duration.ofSeconds(20))
+        WebDriver driver = DriverManager.getDriver();
+
+        new WebDriverWait(driver, Duration.ofSeconds(20))
                 .until(d -> d instanceof TakesScreenshot);
 
-        Screenshot.saveScreenshot(DriverManager.getDriver(), scenario.getName() + ".png");
+        PageUtils pageUtils = new PageUtils(driver);
+        pageUtils.esperarPaginaCarregarComAnimacoes();
+
+        Screenshot.saveScreenshot(driver, scenario.getName() + ".png");
     }
 
 

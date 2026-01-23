@@ -9,7 +9,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-public class HomePage{
+public class HomePage {
 
     private WebDriver driver;
     private WebDriverWait wait;
@@ -18,7 +18,7 @@ public class HomePage{
     @FindBy(xpath = "//*[@id=\"add\"]")
     private WebElement btnAddCart;
 
-    @FindBy(id="customer_login_link")
+    @FindBy(id = "customer_login_link")
     private WebElement btnLogin;
 
     @FindBy(xpath = "//ul[@id='main-menu']//a[text()='Catalog']")
@@ -36,9 +36,10 @@ public class HomePage{
 
     public void navigateTo() {
         driver.get(urlHome);
-        wait.until(ExpectedConditions.visibilityOf(linkCatalogo)); // garante que o campo email esteja visível
+        wait.until(ExpectedConditions.visibilityOf(linkCatalogo));
     }
-    public void acessarLinkCatalogo(){
+
+    public void acessarLinkCatalogo() {
         linkCatalogo.click();
     }
 
@@ -49,7 +50,6 @@ public class HomePage{
     public void selecionarProduto() {
         linkCatalogo.click();
         //driver.navigate().refresh();
-
         wait.until(ExpectedConditions.elementToBeClickable(imgProduct));
         imgProduct.click();
     }
@@ -58,6 +58,8 @@ public class HomePage{
         wait.until(ExpectedConditions.elementToBeClickable(btnAddCart));
         btnAddCart.click();
     }
+
+
 }
 
 
