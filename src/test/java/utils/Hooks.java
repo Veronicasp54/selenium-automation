@@ -28,6 +28,6 @@ public class Hooks {
     // este roda depois, para encerrar o driver
     @After(order = 0)
     public void afterAll() {
-        //DriverManager.quitDriver();
+        DriverManager.quitDriver();
     }
 }

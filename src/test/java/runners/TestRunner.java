@@ -8,8 +8,7 @@ import io.cucumber.junit.CucumberOptions;
 @CucumberOptions(
         features = "src/test/resources/features",
         glue = {"steps", "utils"},
-        tags = "@loginValido",
-        //tags = "not @login",
+        tags = "not @login",
         plugin = {"pretty",
                 "html:target/cucumber-report.html"}, monochrome = true
 )
